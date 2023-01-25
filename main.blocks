@@ -1,4 +1,4 @@
-<xml xmlns="https://developers.google.com/blockly/xml"><variables><variable type="KIND_SpriteKind" id=")==+rU0Vd{Hy6TWuB$fB">Player</variable><variable type="KIND_SpriteKind" id="mVro#?j35_b*q:cEWsB{">Projectile</variable><variable type="KIND_SpriteKind" id=")4{;[Ug~?yxtJp4)A*V@">Food</variable><variable type="KIND_SpriteKind" id="L2L=7z8,r:8}Ie{}e3k0">Enemy</variable><variable id="z*#aNJ,!5[v0m?b~U]2h">mySprite</variable></variables><block type="pxt-on-start" id="@KKAlaWS-WcNnQt34L7J" x="0" y="0"><comment pinned="false" h="123" w="162">Don't forget to comment your code as you work!</comment><statement name="HANDLER"><block type="gamesetbackgroundimage" id="JJ34z8$RVSU2Q89})6YG"><value name="img"><shadow type="background_image_picker" id="qv:v!,o@iiB.ZEV_2l1,"><field name="img">img`
+<xml xmlns="https://developers.google.com/blockly/xml"><variables><variable type="KIND_SpriteKind" id=")==+rU0Vd{Hy6TWuB$fB">Player</variable><variable type="KIND_SpriteKind" id="mVro#?j35_b*q:cEWsB{">Projectile</variable><variable type="KIND_SpriteKind" id=")4{;[Ug~?yxtJp4)A*V@">Food</variable><variable type="KIND_SpriteKind" id="L2L=7z8,r:8}Ie{}e3k0">Enemy</variable><variable id="z*#aNJ,!5[v0m?b~U]2h">theShip</variable></variables><block type="pxt-on-start" id="@KKAlaWS-WcNnQt34L7J" x="0" y="0"><comment pinned="false" h="123" w="162">Don't forget to comment your code as you work!</comment><statement name="HANDLER"><block type="gamesetbackgroundimage" id="JJ34z8$RVSU2Q89})6YG"><value name="img"><shadow type="background_image_picker" id="qv:v!,o@iiB.ZEV_2l1,"><field name="img">img`
 ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -119,4 +119,21 @@ ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-`</field><data>{"commentRefs":[],"fieldData":{"img":"qv:v!,o@iiB.ZEV_2l1,"}}</data></shadow></value></block></statement></block></xml>
+`</field><data>{"commentRefs":[],"fieldData":{"img":"qv:v!,o@iiB.ZEV_2l1,"}}</data></shadow></value><next><block type="variables_set" id="h!D_r$?+Lt9O)hQq)^8k"><field name="VAR" id="z*#aNJ,!5[v0m?b~U]2h">theShip</field><value name="VALUE"><shadow xmlns="http://www.w3.org/1999/xhtml" type="math_number"><field name="NUM">0</field></shadow><block type="spritescreate" id="x+:YTqb`Hntbxu18#cD9"><value name="img"><shadow type="screen_image_picker" id="ZSswQs_jrKyeXGTXu4+Z"><field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`</field><data>{"commentRefs":[],"fieldData":{"img":"ZSswQs_jrKyeXGTXu4+Z"}}</data></shadow></value><value name="kind"><shadow type="spritekind" id="ZIg9l{0*{,dpt_b-*$0p"><field name="MEMBER">Player</field></shadow></value></block></value></block></next></block></statement></block></xml>
