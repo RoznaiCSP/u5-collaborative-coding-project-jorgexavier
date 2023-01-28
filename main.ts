@@ -271,6 +271,6 @@ forever(function () {
             `, SpriteKind.Enemy)
         stranger.setPosition(randint(0, 155), 0)
         stranger.setVelocity(randint(-20, 20), 120)
-        pause(500)
+        pause(800)
     }
 })
