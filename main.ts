@@ -1,34 +1,63 @@
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    projectile = sprites.createProjectileFromSprite(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . 2 3 1 1 3 2 . . . . . 
-        . . . . . 2 3 1 1 3 2 . . . . . 
-        . . . . . 2 3 1 1 3 2 . . . . . 
-        . . . . . 2 3 1 1 3 2 . . . . . 
-        . . . . . 2 3 1 1 3 2 . . . . . 
-        . . . . . 2 3 1 1 3 2 . . . . . 
-        . . . . . 2 3 1 1 3 2 . . . . . 
-        . . . . . 2 3 1 1 3 2 . . . . . 
-        . . . . . 2 3 1 1 3 2 . . . . . 
-        . . . . . 2 3 1 1 3 2 . . . . . 
-        . . . . . 2 3 1 1 3 2 . . . . . 
-        . . . . . 2 3 1 1 3 2 . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `, theShip, 0, -85)
+    // if difficulty is easy make projectile red, if difficulty is hard make projectile blue
+    if (difficulty == "easy") {
+        projectile = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . 2 3 1 1 3 2 . . . . . 
+            . . . . . 2 3 1 1 3 2 . . . . . 
+            . . . . . 2 3 1 1 3 2 . . . . . 
+            . . . . . 2 3 1 1 3 2 . . . . . 
+            . . . . . 2 3 1 1 3 2 . . . . . 
+            . . . . . 2 3 1 1 3 2 . . . . . 
+            . . . . . 2 3 1 1 3 2 . . . . . 
+            . . . . . 2 3 1 1 3 2 . . . . . 
+            . . . . . 2 3 1 1 3 2 . . . . . 
+            . . . . . 2 3 1 1 3 2 . . . . . 
+            . . . . . 2 3 1 1 3 2 . . . . . 
+            . . . . . 2 3 1 1 3 2 . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, theShip, 0, -85)
+    } else if (difficulty == "hard") {
+        projectile = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . 8 9 1 1 9 8 . . . . . 
+            . . . . . 8 9 1 1 9 8 . . . . . 
+            . . . . . 8 9 1 1 9 8 . . . . . 
+            . . . . . 8 9 1 1 9 8 . . . . . 
+            . . . . . 8 9 1 1 9 8 . . . . . 
+            . . . . . 8 9 1 1 9 8 . . . . . 
+            . . . . . 8 9 1 1 9 8 . . . . . 
+            . . . . . 8 9 1 1 9 8 . . . . . 
+            . . . . . 8 9 1 1 9 8 . . . . . 
+            . . . . . 8 9 1 1 9 8 . . . . . 
+            . . . . . 8 9 1 1 9 8 . . . . . 
+            . . . . . 8 9 1 1 9 8 . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, theShip, 0, -85)
+        pause(500)
+    }
 })
+// Make the projectile destroy stranger
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     stranger.destroy(effects.fire, 200)
     info.changeScoreBy(1)
 })
+// make the enemy take off a point when overlaps with player and destroy the enemy.
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    stranger.destroy(effects.spray, 500)
     info.changeLifeBy(-1)
 })
 // Don't forget to comment your code as you work!
 let stranger: Sprite = null
 let projectile: Sprite = null
 let theShip: Sprite = null
+let difficulty = ""
+// This asks for the difficulty
+difficulty = game.askForString("Pick \"easy\" or \"hard\"", 4)
 scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -188,29 +217,60 @@ controller.moveSprite(theShip, 125, 125)
 theShip.setStayInScreen(true)
 theShip.setKind(SpriteKind.Player)
 forever(function () {
-    stranger = sprites.create(img`
-        ....................
-        ....................
-        ....................
-        .......8888888......
-        .....88888888888....
-        ....8888888888888...
-        ....8888888888888...
-        ...888888888888888..
-        ...888555888855588..
-        ...888555888855588..
-        ...888555888855588..
-        ...888888888888888..
-        ...888888888888888..
-        ...888888888888888..
-        ....8888888888888...
-        ....8888888888888...
-        .....88888888888....
-        .......8888888......
-        ....................
-        ....................
-        `, SpriteKind.Enemy)
-    stranger.setPosition(randint(0, 155), 0)
-    stranger.setVelocity(75, 75)
-    pause(1000)
+    // when difficulty is easy make the enemy appear less frequently and make them slower
+    while (difficulty == "easy") {
+        stranger = sprites.create(img`
+            ....................
+            ....................
+            ....................
+            .......8888888......
+            .....88888888888....
+            ....8888888888888...
+            ....8888888888888...
+            ...888888888888888..
+            ...888555888855588..
+            ...888555888855588..
+            ...888555888855588..
+            ...888888888888888..
+            ...888888888888888..
+            ...888888888888888..
+            ....8888888888888...
+            ....8888888888888...
+            .....88888888888....
+            .......8888888......
+            ....................
+            ....................
+            `, SpriteKind.Enemy)
+        stranger.setPosition(randint(0, 155), 0)
+        stranger.setVelocity(75, 75)
+        pause(1000)
+    }
+    // When difficulty is hard make the enemys appear at a quicker rate and velocity is higher.
+    while (difficulty == "hard") {
+        stranger = sprites.create(img`
+            ....................
+            ....................
+            ....................
+            .......3333333......
+            .....33222222233....
+            ....3222222222223...
+            ....3222222222223...
+            ...322222222222223..
+            ...322113222211323..
+            ...322133222213323..
+            ...322333222233323..
+            ...322222222222223..
+            ...322222222222223..
+            ...322222222222223..
+            ....3222222222223...
+            ....3222222222223...
+            .....33222222233....
+            .......3333333......
+            ....................
+            ....................
+            `, SpriteKind.Enemy)
+        stranger.setPosition(randint(0, 155), 0)
+        stranger.setVelocity(randint(-20, 20), 120)
+        pause(500)
+    }
 })
