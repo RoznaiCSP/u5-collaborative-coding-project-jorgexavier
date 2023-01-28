@@ -1,4 +1,34 @@
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    projectile = sprites.createProjectileFromSprite(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . 2 3 1 1 3 2 . . . . . 
+        . . . . . 2 3 1 1 3 2 . . . . . 
+        . . . . . 2 3 1 1 3 2 . . . . . 
+        . . . . . 2 3 1 1 3 2 . . . . . 
+        . . . . . 2 3 1 1 3 2 . . . . . 
+        . . . . . 2 3 1 1 3 2 . . . . . 
+        . . . . . 2 3 1 1 3 2 . . . . . 
+        . . . . . 2 3 1 1 3 2 . . . . . 
+        . . . . . 2 3 1 1 3 2 . . . . . 
+        . . . . . 2 3 1 1 3 2 . . . . . 
+        . . . . . 2 3 1 1 3 2 . . . . . 
+        . . . . . 2 3 1 1 3 2 . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, theShip, 0, -85)
+})
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
+    stranger.destroy(effects.fire, 200)
+    info.changeScoreBy(1)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
+})
 // Don't forget to comment your code as you work!
+let stranger: Sprite = null
+let projectile: Sprite = null
+let theShip: Sprite = null
 scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -121,7 +151,8 @@ scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     `)
-let theShip = sprites.create(img`
+info.setLife(3)
+theShip = sprites.create(img`
     .....ffff..........ffff.......
     ....f5666f........f6665f......
     ....f5666fffffffffff665f......
@@ -155,3 +186,31 @@ let theShip = sprites.create(img`
     `, SpriteKind.Player)
 controller.moveSprite(theShip, 125, 125)
 theShip.setStayInScreen(true)
+theShip.setKind(SpriteKind.Player)
+forever(function () {
+    stranger = sprites.create(img`
+        ....................
+        ....................
+        ....................
+        .......8888888......
+        .....88888888888....
+        ....8888888888888...
+        ....8888888888888...
+        ...888888888888888..
+        ...888555888855588..
+        ...888555888855588..
+        ...888555888855588..
+        ...888888888888888..
+        ...888888888888888..
+        ...888888888888888..
+        ....8888888888888...
+        ....8888888888888...
+        .....88888888888....
+        .......8888888......
+        ....................
+        ....................
+        `, SpriteKind.Enemy)
+    stranger.setPosition(randint(0, 155), 0)
+    stranger.setVelocity(75, 75)
+    pause(1000)
+})
