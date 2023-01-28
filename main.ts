@@ -23,6 +23,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
     info.changeScoreBy(1)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    stranger.destroy(effects.spray, 500)
     info.changeLifeBy(-1)
 })
 // Don't forget to comment your code as you work!
